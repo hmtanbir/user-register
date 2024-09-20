@@ -9,7 +9,7 @@ const resolvers = {
             const filter = {};
 
             if (age) {
-                filter.age = { $gt: age }; // Use $gt for greater than
+                filter.age = age; // Use $gt for greater than
             }
             if (lastName) {
                 filter.lastName = lastName;
