@@ -4,7 +4,7 @@ const typeDefs = gql`
   type Query {
     greetings: String
     welcome(name: String!): String
-    users: [User]
+    users(age: Int, lastName: String): [User]
     user(id: ID!): User
   }
   type User {

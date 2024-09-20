@@ -4,7 +4,19 @@ const resolvers = {
     Query: {
         greetings: () => "GraphQL is Awesome",
         welcome: (parent, args) => `Hello ${args.name}`,
-        users: async () => await User.find({}),
+        users: async (parent, args) => {
+            const { age, lastName } = args;
+            const filter = {};
+
+            if (age) {
+                filter.age = { $gt: age }; // Use $gt for greater than
+            }
+            if (lastName) {
+                filter.lastName = lastName;
+            }
+
+            return await User.find(filter);
+        },
         user: async (parent, args) => await User.findById(args.id),
     },
     Mutation: {
